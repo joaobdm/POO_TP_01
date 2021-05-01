@@ -1,1 +1,1 @@
-![alt](imagens/PooTP_versao6.png "Modelagem v6")
+![alt](imagens/PooTP_versao6.1.png "Modelagem v6.1")
