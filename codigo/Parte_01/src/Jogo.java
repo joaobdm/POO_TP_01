@@ -12,6 +12,12 @@ public class Jogo {
         dataDeLanc = new Data();        
     }
 
+    Jogo(String nome, double preco, Data data){
+        this.nome = nome;
+        this.preco = preco;        
+        dataDeLanc = data;
+    }
+
     @Override
     public String toString() {
         System.out.println("Nome: " + nome);
