@@ -4,5 +4,6 @@ public class Playstation extends Jogo {
 
     Playstation(){
         super.ajustaPreco(this.preco*MULTIPLICADORPS);
+        super.plataforma = "Playstation";
     }
 }

@@ -4,5 +4,6 @@ public class Xbox extends Jogo {
 
     Xbox(){
         super.ajustaPreco(this.preco*MULTIPLICADORXB);
+        super.plataforma = "Xbox";
     }
 }

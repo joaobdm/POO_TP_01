@@ -4,5 +4,6 @@ public class Computador extends Jogo {
 
     Computador(){
         super.ajustaPreco(this.preco*MULTIPLICADORPC);
+        super.plataforma = "Computador";
     }
 }
