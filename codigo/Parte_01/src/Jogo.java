@@ -7,7 +7,7 @@ public class Jogo {
 
     Jogo() {
         nome = "";
-        preco = 2.0;
+        preco = 0.0;
         plataforma = "";
         dataDeLanc = new Data();        
     }
@@ -23,7 +23,7 @@ public class Jogo {
         System.out.println("Nome: " + nome);
         System.out.printf("Preço: %.2f\n", preco);
         System.out.println("Plataforma: " + plataforma);
-        System.out.println("Data Lançamento: " + dataDeLanc.toString());        
+        System.out.println("Data Lançamento: " + dataDeLanc.toString() + "\n");        
         return super.toString();
     }
 

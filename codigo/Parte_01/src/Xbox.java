@@ -6,4 +6,12 @@ public class Xbox extends Jogo {
         super.ajustaPreco(this.preco*MULTIPLICADORXB);
         super.plataforma = "Xbox";
     }
+
+    Xbox(String nome, double preco, Data data) {
+        super(nome, preco, data);
+        super.ajustaPreco(this.preco*MULTIPLICADORXB);
+        super.plataforma = "Xbox";
+    }
+
+    
 }
