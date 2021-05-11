@@ -5,6 +5,38 @@ public class Jogo {
     protected String plataforma;
     protected Data dataDeLanc;    
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+    public String getPlataforma() {
+        return plataforma;
+    }
+
+    public void setPlataforma(String plataforma) {
+        this.plataforma = plataforma;
+    }
+
+    public Data getDataDeLanc() {
+        return dataDeLanc;
+    }
+
+    public void setDataDeLanc(Data dataDeLanc) {
+        this.dataDeLanc = dataDeLanc;
+    }
+
     Jogo() {
         nome = "";
         preco = 0.0;
