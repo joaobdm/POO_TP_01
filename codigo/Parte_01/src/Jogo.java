@@ -3,15 +3,13 @@ public class Jogo {
     protected String nome;
     protected double preco;
     protected String plataforma;
-    protected Data dataDeLanc;
-    protected String genero;
+    protected Data dataDeLanc;    
 
     Jogo() {
         nome = "";
-        preco = 0.0;
+        preco = 2.0;
         plataforma = "";
-        dataDeLanc = new Data();
-        genero = "";
+        dataDeLanc = new Data();        
     }
 
     @Override
@@ -21,5 +19,9 @@ public class Jogo {
         System.out.println("Plataforma: " + plataforma);
         System.out.println("Data Lançamento: " + dataDeLanc.toString());        
         return super.toString();
+    }
+
+    protected void ajustaPreco(double novoPreco){
+        this.preco = novoPreco;
     }
 }
