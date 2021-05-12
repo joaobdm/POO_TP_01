@@ -1,6 +1,6 @@
 public class Computador extends Jogo {
 
-    private static final double MULTIPLICADORPC = 4;
+    private static final double MULTIPLICADORPC = 1.2;
 
     Computador(){
         super.ajustaPreco(this.preco*MULTIPLICADORPC);

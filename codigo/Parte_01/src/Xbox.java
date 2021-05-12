@@ -1,6 +1,6 @@
 public class Xbox extends Jogo {
 
-    private static final double MULTIPLICADORXB = 3;
+    private static final double MULTIPLICADORXB = 1;
 
     Xbox(){
         super.ajustaPreco(this.preco*MULTIPLICADORXB);

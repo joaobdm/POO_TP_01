@@ -1,6 +1,6 @@
 public class Playstation extends Jogo {
 
-    private static final double MULTIPLICADORPS = 2;
+    private static final double MULTIPLICADORPS = 1.5;
 
     Playstation(){
         super.ajustaPreco(this.preco*MULTIPLICADORPS);
