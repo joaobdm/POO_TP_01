@@ -6,6 +6,9 @@ public class Data {
     private int mes;
     private int ano;
 
+    /**
+     * Construtor simples que retorna um objeto com Data com um dia a mais em relação a data mais recente
+     */
     public Data() {
         if (contadorExecucao < 2) {
             ano = 1990;
@@ -22,6 +25,12 @@ public class Data {
         }
     }
 
+    /**
+     * Construtor com parâmetros, sendo possível construir qualquer data válida a partir de 1/1/1900
+     * @param dia
+     * @param mes
+     * @param ano
+     */
     public Data(int dia, int mes, int ano) {
         if (contadorExecucao < 2)
             contadorExecucao++;
@@ -177,11 +186,18 @@ public class Data {
         return resp;
     }
 
+    /**
+     * Imprime a data no terminal
+     */
     public void mostrarData() {
         System.out.printf("DATA: %d/%d/%d", dia, mes, ano);
         System.out.println();
     }
 
+    /**
+     * Passa como parâmetro o número de dias que deseja acrescentar a data em questão
+     * @param diasExtras número inteiro de dias a ser passado como parâmetro
+     */
     public void somarDias(int diasExtras) {
         if (diasExtras >= 0) {
             for (int i = 0; i < diasExtras; i++) {
@@ -193,6 +209,12 @@ public class Data {
             System.out.println("PARÂMETRO INVÁLIDO, OPERAÇÃO CANCELADA");
     }
 
+    /**
+     * Altera a data do objeta por qualquer data a partir de 1/1/1900 a ser passada como parâmetro
+     * @param novoDia
+     * @param novoMes
+     * @param novoAno
+     */
     public void alterarData(int novoDia, int novoMes, int novoAno) {
 
         Data novaData = new Data();
