@@ -16,7 +16,8 @@ public class App {
         vetor.adicionarJogo(jg);
         vetor.adicionarJogo(jg2);
         vetor.adicionarJogo(jg3);
-        vetor.removerJogo(0);
+        Jogo pe = vetor.removerJogo(0);
         vetor.toString();
+        pe.toString();
     }
 }

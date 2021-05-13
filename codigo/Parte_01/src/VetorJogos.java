@@ -63,16 +63,11 @@ public class VetorJogos {
      * @return Jogo removido
      */
     public Jogo removerJogo(int posi) {
-        Jogo aux = new Jogo();
-
-        // Clonando objeto jogo
-        aux.setNome(jogos[posi].getNome());
-        aux.setDataDeLanc(jogos[posi].getDataDeLanc());
-        aux.setPlataforma(jogos[posi].getPlataforma());
-        aux.setPreco(jogos[posi].getPreco());
+        Jogo aux = jogos[posi];
+        Jogo aux2 = new Jogo();
         
         //"Zerando" a posição removida
-        jogos[posi] = new Jogo();
+        jogos[posi] = aux2;
 
         //Reordenando o vetor
         for (int i = posi + 1; i < jogos.length; i++) {
