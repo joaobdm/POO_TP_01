@@ -67,9 +67,9 @@ public class Cliente {
 	}
 	
 	
-	public void mostraFidelidade() 
+	public double checaFidelidade() 
 	{
-		classificacao.checaFidelidade();
+		return classificacao.checaFidelidade();
 	}
 	
 	
