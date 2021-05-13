@@ -5,7 +5,7 @@ public class Cliente {
 	private String cpf;
 	private VetorJogos historicoCompras[];
 	private double valorComprado;
-	private Fidelidade classificacao; //Tive que inserir esse atributo para fazer o método "mostrarFidelidade" funcionar.
+	private IFidelidade classificacao; //Tive que inserir esse atributo para fazer o mÃ©todo "mostrarFidelidade" funcionar.
 	
 	
 	public void setNome (String name)
@@ -85,7 +85,7 @@ public class Cliente {
 		}
 		
 		return "Cliente: " + this.nome + " CPF: " + this.cpf +
-				"Histórico de compras: " + texto +
+				"HistÃ³rico de compras: " + texto +
 				"Valor da compra atual: " + this.valorComprado;
 	}
 	
