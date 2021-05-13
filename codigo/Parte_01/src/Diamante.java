@@ -1,5 +1,4 @@
-
-public class Diamante implements Fidelidade {
+public class Diamante implements IFidelidade {
 	
 	private static final double PERCENTUALDESCONTO = 0.7;
 
@@ -8,5 +7,4 @@ public class Diamante implements Fidelidade {
 	{
 		return PERCENTUALDESCONTO;
 	}
-
 }

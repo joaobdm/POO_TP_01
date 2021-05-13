@@ -1,5 +1,4 @@
-
-public class Ouro implements Fidelidade{
+public class Ouro implements IFidelidade{
 	
 	private static final double PERCENTUALDESCONTO = 0.8;
 	
