@@ -27,3 +27,5 @@ hs_err_pid*
 /bin/
 .project
 .projects
+.classpath
+/codigo/Parte_01/bin/
