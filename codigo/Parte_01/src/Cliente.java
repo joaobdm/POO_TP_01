@@ -74,8 +74,9 @@ public class Cliente {
 	
 	
 	
-	private String passaParaString() //Tive que criar esse método para poder usar o toString com o vetor.
+	public String toString()
 	{
+		
 		String texto = null;
 		
 		for(int i = 0; i < historicoCompras.length; i++)
@@ -83,14 +84,8 @@ public class Cliente {
 			texto = texto + historicoCompras[i];
 		}
 		
-		return texto;
-	}
-	
-	
-	public String toString() //Conferir isso!!!!!
-	{
 		return "Cliente: " + this.nome + " CPF: " + this.cpf +
-				"Histórico de compras: " + this.passaParaString() +
+				"Histórico de compras: " + texto +
 				"Valor da compra atual: " + this.valorComprado;
 	}
 	
