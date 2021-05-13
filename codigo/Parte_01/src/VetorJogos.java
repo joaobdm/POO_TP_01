@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.Comparator;
+
 public class VetorJogos {
 
     private static final int MAXJOGOS = 500;
@@ -99,6 +102,19 @@ public class VetorJogos {
         else
             return false;
     }
+
+    public void ordenaPorPlatf()
+    {
+        Arrays.sort(this.jogos, new Comparator<Object>()
+        {
+            public int compare(Object o1, Object o2)
+            {
+                String a = (String) o1;
+                String b = (String) o2;
+                return a.compareTo(b);
+            }
+        });
+    } 
 
     @Override
     public String toString() {
