@@ -5,7 +5,8 @@ public class App {
         //Testes referentes a classe Jogo e seus herdeiros
         Data hoje = new Data(11, 05, 2021);
         
-        Playstation jg = new Playstation("God Of War", 75, hoje);        
+        Playstation jg = new Playstation("God Of War", 75, hoje);   
+        Playstation jg4 = new Playstation("Bod Of War", 75, hoje);     
 
         Computador jg2 = new Computador("Half-Life 3", 300, hoje);        
 
@@ -16,8 +17,8 @@ public class App {
         vetor.adicionarJogo(jg);
         vetor.adicionarJogo(jg2);
         vetor.adicionarJogo(jg3);
-        vetor.removerJogo(0);
-        //vetor.ordenaPorPlatf();
+        vetor.adicionarJogo(jg4);
+        vetor.ordenaPorPlatf();
         vetor.toString();
     }
 }
