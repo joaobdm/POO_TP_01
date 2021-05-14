@@ -1,6 +1,8 @@
 import java.util.Arrays;
 import java.util.Comparator;
 
+import javax.print.attribute.standard.JobOriginatingUserName;
+
 public class VetorJogos {
 
     private static final int MAXJOGOS = 500;
@@ -105,13 +107,23 @@ public class VetorJogos {
 
     public void ordenaPorPlatf()
     {
-        Arrays.sort(this.jogos, new Comparator<Object>()
+        Arrays.sort(this.jogos, new Comparator<Jogo>()
         {
-            public int compare(Object o1, Object o2)
+            public int compare(Jogo o1, Jogo o2)
             {
-                String a = (String) o1;
-                String b = (String) o2;
-                return a.compareTo(b);
+                if(o1.getPlataforma().equals(o2.getPlataforma()))
+                {
+                    String a = (String) o1.getNome();
+                    String b = (String) o2.getNome();
+                    return a.compareTo(b);
+                }
+                else
+                {
+                    String a = (String) o1.getPlataforma();
+                    String b = (String) o2.getPlataforma();
+                    return a.compareTo(b);
+                }
+                
             }
         });
     } 
