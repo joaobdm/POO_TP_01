@@ -17,6 +17,7 @@ public class App {
         vetor.adicionarJogo(jg2);
         vetor.adicionarJogo(jg3);
         vetor.removerJogo(0);
+        //vetor.ordenaPorPlatf();
         vetor.toString();
     }
 }
