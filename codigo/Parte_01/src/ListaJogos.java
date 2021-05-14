@@ -1,10 +1,10 @@
-public class VetorJogos {
+public class ListaJogos {
 
     private static final int MAXJOGOS = 500;
     private Jogo[] jogos;
     private StringBuilder sb;
 
-    VetorJogos() {
+    ListaJogos() {
         jogos = new Jogo[MAXJOGOS];
         for (int i = 0; i < jogos.length; i++) {
             jogos[i] = new Jogo();

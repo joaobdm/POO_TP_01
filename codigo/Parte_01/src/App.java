@@ -12,7 +12,7 @@ public class App {
         Xbox jg3 = new Xbox("Battle Toads", 50, hoje);        
         ////#endregion
 
-        VetorJogos vetor = new VetorJogos();
+        ListaJogos vetor = new ListaJogos();
         vetor.adicionarJogo(jg);
         vetor.adicionarJogo(jg2);
         vetor.adicionarJogo(jg3);
