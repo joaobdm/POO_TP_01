@@ -31,6 +31,13 @@ public class ListaJogos {
         return false;
     }
 
+    public boolean buscaJogo(String nomeDoJogo){
+        if(buscaJogo(nomeDoJogo, "Computador")) return true;
+        if(buscaJogo(nomeDoJogo, "Playstation")) return true;
+        if(buscaJogo(nomeDoJogo, "Xbox")) return true;
+        else return false;
+    }
+
     /**
      * Adiciona um Jogo j ao vetor caso já não exista o mesmo jogo nesse vetor.
      * 
