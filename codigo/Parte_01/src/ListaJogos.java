@@ -34,6 +34,9 @@ public class ListaJogos {
         return false;
     }
 
+    /**
+     * Método sobre carregado, retornando simplesmente se o jogo existe, independente da plataforma
+     */
     public boolean buscaJogo(String nomeDoJogo){
         if(buscaJogo(nomeDoJogo, "Computador")) return true;
         if(buscaJogo(nomeDoJogo, "Playstation")) return true;
