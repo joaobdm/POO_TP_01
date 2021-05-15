@@ -9,9 +9,6 @@ public class ListaJogos {
 
     ListaJogos() {
         jogos = new Jogo[MAXJOGOS];
-        for (int i = 0; i < jogos.length; i++) {
-            jogos[i] = new Jogo();
-        }
     }
 
     /**
@@ -25,23 +22,30 @@ public class ListaJogos {
     public boolean buscaJogo(String nomeDoJogo, String plataforma) {
 
         for (int i = 0; i < jogos.length; i++) {
+
+            if (jogos[i] == null)
+                return false;
             if (jogos[i].getNome().equals(nomeDoJogo) && jogos[i].getPlataforma().equals(plataforma)) {
                 return true;
             }
-            if (jogos[i].getNome().equals(""))
-                return false;
+
         }
         return false;
     }
 
     /**
-     * Método sobre carregado, retornando simplesmente se o jogo existe, independente da plataforma
+     * Método sobre carregado, retornando simplesmente se o jogo existe,
+     * independente da plataforma
      */
-    public boolean buscaJogo(String nomeDoJogo){
-        if(buscaJogo(nomeDoJogo, "Computador")) return true;
-        if(buscaJogo(nomeDoJogo, "Playstation")) return true;
-        if(buscaJogo(nomeDoJogo, "Xbox")) return true;
-        else return false;
+    public boolean buscaJogo(String nomeDoJogo) {
+        if (buscaJogo(nomeDoJogo, "Computador"))
+            return true;
+        if (buscaJogo(nomeDoJogo, "Playstation"))
+            return true;
+        if (buscaJogo(nomeDoJogo, "Xbox"))
+            return true;
+        else
+            return false;
     }
 
     /**
@@ -59,7 +63,7 @@ public class ListaJogos {
 
         else if (!buscaJogo(j.getNome(), j.getPlataforma()) && !vetorCheio()) {
             for (int i = 0; i < jogos.length; i++) {
-                if (jogos[i].getNome().equals("")) {
+                if (jogos[i] == null) {
                     jogos[i] = j;
                     return true;
                 }
@@ -76,13 +80,13 @@ public class ListaJogos {
      * @return Jogo removido
      */
     public Jogo removerJogo(int posi) {
-        Jogo aux = jogos[posi];
-        Jogo aux2 = new Jogo();
-        
-        //"Zerando" a posição removida
-        jogos[posi] = aux2;
 
-        //Reordenando o vetor
+        Jogo aux = jogos[posi];
+
+        // "Zerando" a posição removida
+        jogos[posi] = null;
+
+        // Reordenando o vetor
         for (int i = posi + 1; i < jogos.length; i++) {
             this.jogos[posi] = this.jogos[i];
             posi++;
@@ -93,7 +97,7 @@ public class ListaJogos {
 
     private boolean vetorVazio() {
 
-        if (this.jogos[0].getNome().equals(""))
+        if (this.jogos[0] == null)
             return true;
 
         else
@@ -101,41 +105,39 @@ public class ListaJogos {
     }
 
     private boolean vetorCheio() {
-        if (!this.jogos[MAXJOGOS - 1].getNome().equals(""))
+        if (this.jogos[MAXJOGOS - 1] != null)
             return true;
 
         else
             return false;
     }
 
-    public void ordenaPorPlatf()
-    {
-        Arrays.sort(this.jogos, new Comparator<Jogo>()
-        {
-            public int compare(Jogo o1, Jogo o2)
-            {
-                if(o1.getPlataforma().equals(o2.getPlataforma()))
-                {
+    public void ordenaPorPlatf() {
+        Arrays.sort(this.jogos, new Comparator<Jogo>() {
+            public int compare(Jogo o1, Jogo o2) {
+
+                if (o1 == null || o2 == null)
+                    return 0;
+
+                if (o1.getPlataforma().equals(o2.getPlataforma())) {
                     String a = (String) o1.getNome();
                     String b = (String) o2.getNome();
                     return a.compareTo(b);
-                }
-                else
-                {
+                } else {
                     String a = (String) o1.getPlataforma();
                     String b = (String) o2.getPlataforma();
                     return a.compareTo(b);
                 }
-                
+
             }
         });
-    } 
+    }
 
     @Override
     public String toString() {
         sb = new StringBuilder();
         for (int i = 0; i < jogos.length; i++) {
-            if (!jogos[i].getNome().equals("")) {
+            if (jogos[i] != null) {
                 sb.append(jogos[i].toString());
             }
         }
