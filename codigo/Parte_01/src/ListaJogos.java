@@ -1,3 +1,7 @@
+import java.util.Arrays;
+import java.util.Comparator;
+import javax.print.attribute.standard.JobOriginatingUserName;
+
 public class ListaJogos {
 
     private static final int MAXJOGOS = 500;
@@ -101,6 +105,29 @@ public class ListaJogos {
         else
             return false;
     }
+
+    public void ordenaPorPlatf()
+    {
+        Arrays.sort(this.jogos, new Comparator<Jogo>()
+        {
+            public int compare(Jogo o1, Jogo o2)
+            {
+                if(o1.getPlataforma().equals(o2.getPlataforma()))
+                {
+                    String a = (String) o1.getNome();
+                    String b = (String) o2.getNome();
+                    return a.compareTo(b);
+                }
+                else
+                {
+                    String a = (String) o1.getPlataforma();
+                    String b = (String) o2.getPlataforma();
+                    return a.compareTo(b);
+                }
+                
+            }
+        });
+    } 
 
     @Override
     public String toString() {
