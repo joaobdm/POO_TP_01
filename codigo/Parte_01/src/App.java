@@ -20,6 +20,9 @@ public class App {
         vetor.adicionarJogo(jg4);
         // vetor.ordenaPorPlatf();        
         // vetor.toString(); 
-        vetor.removerJogo(3).toString();       
+        // vetor.removerJogo(3).toString();
+        
+        if(vetor.buscaJogo("god of wa")) System.out.println("SIM !!");
+        else System.out.println("NAOOO !!!");
     }
 }
