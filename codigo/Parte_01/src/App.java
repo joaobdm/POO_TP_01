@@ -3,14 +3,16 @@ public class App {
         
         ////#region
         //Testes referentes a classe Jogo e seus herdeiros
-        Data hoje = new Data(11, 05, 2021);
-        
-        Playstation jg = new Playstation("God Of War", 75, hoje);   
-        Playstation jg4 = new Playstation("Bod Of War", 75, hoje);     
+        Data GOW = new Data(20, 04, 2018);
+        Data BOW = new Data(11, 05, 2021);
+        Data HF3 = new Data(23, 05, 2020);
+        Data BT = new Data(20, 8, 2020);
 
-        Computador jg2 = new Computador("Half-Life 3", 300, hoje);        
 
-        Xbox jg3 = new Xbox("Battle Toads", 50, hoje);        
+        Playstation jg = new Playstation("God Of War", 75, GOW);   
+        Playstation jg4 = new Playstation("Bod Of War", 57, BOW);     
+        Computador jg2 = new Computador("Half-Life 3", 300, HF3);        
+        Xbox jg3 = new Xbox("Battle Toads", 50, BT);        
         ////#endregion
 
         ListaJogos vetor = new ListaJogos();
