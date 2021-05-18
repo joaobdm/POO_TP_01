@@ -112,7 +112,6 @@ public class ListaJogos {
         else
             return false;
     }
-
     /**
     * ordena o vetor em ordem alfabética primeiro comprarando as plataformas, se ouver um "empate", o desempate
     * será entre o nome do jogo
