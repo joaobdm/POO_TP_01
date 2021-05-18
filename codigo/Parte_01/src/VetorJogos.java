@@ -2,11 +2,17 @@ public class VetorJogos {
 
     private Jogo[] jogos;
     private StringBuilder sb = new StringBuilder();
-
+    
     VetorJogos() {
         jogos = new Jogo[1000];
     }
 
+    
+    public Jogo[] getJogos()
+    {
+    	return jogos;
+    }
+    
     /**
      * Através do nome e plataforma, detecta se o jogo já existe no vetor em questão.
      * @param nomeDoJogo
