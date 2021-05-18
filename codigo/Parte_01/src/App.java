@@ -20,7 +20,8 @@ public class App {
         vetor.adicionarJogo(jg2);
         vetor.adicionarJogo(jg3);
         vetor.adicionarJogo(jg4);
-        vetor.ordenaPorPlatf();
+       // vetor.ordenaPorPlatf();
+        vetor.ordenaPorCond();
         vetor.toString();
     }
 }
