@@ -128,6 +128,19 @@ public class VetorJogos {
         });
     } 
 
+   /* public void ordenaPorCond()
+    {
+        Arrays.sort(this.jogos, new Comparator<Jogo>()
+        {
+            public int compare(Jogo o1, Jogo o2)
+            {
+                Data a = new Data(17, 05, 2020);
+                Data b = (Data) o2.getDataDeLanc();
+                return a.compareTo(b);
+            }
+        });
+    }*/
+
     @Override
     public String toString() {
         sb = new StringBuilder();
