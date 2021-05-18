@@ -26,5 +26,8 @@ public class App {
         
         if(vetor.buscaJogo("god of wa")) System.out.println("SIM !!");
         else System.out.println("NAOOO !!!");
+       // vetor.ordenaPorPlatf();
+        vetor.ordenaPorCond();
+        vetor.toString();
     }
 }
