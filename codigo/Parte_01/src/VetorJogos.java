@@ -104,7 +104,12 @@ public class VetorJogos {
         else
             return false;
     }
-
+    /**
+    * ordena o vetor em ordem alfabética primeiro comprarando as plataformas, se ouver um "empate", o desempate
+    * será entre o nome do jogo
+    * @param o1 jogo que é reorganizado
+    * @param o2 jogo que é comparado para reorganização
+    */
     public void ordenaPorPlatf()
     {
         Arrays.sort(this.jogos, new Comparator<Jogo>()
@@ -128,18 +133,18 @@ public class VetorJogos {
         });
     } 
 
-   /* public void ordenaPorCond()
+    public void ordenaPorCond()
     {
         Arrays.sort(this.jogos, new Comparator<Jogo>()
         {
             public int compare(Jogo o1, Jogo o2)
             {
-                Data a = new Data(17, 05, 2020);
-                Data b = (Data) o2.getDataDeLanc();
+                Integer a = (Integer) o1.getDataDeLanc().getAno();
+                Integer b = (Integer) o2.getDataDeLanc().getAno();
                 return a.compareTo(b);
             }
         });
-    }*/
+    }
 
     @Override
     public String toString() {
