@@ -1,4 +1,4 @@
-public class Jogo {
+public abstract class Jogo {
 
     protected String nome;
     protected double preco;

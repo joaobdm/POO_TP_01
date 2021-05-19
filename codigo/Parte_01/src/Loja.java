@@ -1,9 +1,9 @@
 public class Loja {
     //private Cliente [] clietesCadastrados;
-    private VetorJogos bibliotecaJogos;
-    private VetorJogos carrinhoCompras;
+    private ListaJogos bibliotecaJogos;
+    private ListaJogos carrinhoCompras;
 
     Loja(){
-        bibliotecaJogos = new VetorJogos();
+        bibliotecaJogos = new ListaJogos();
     }
 }

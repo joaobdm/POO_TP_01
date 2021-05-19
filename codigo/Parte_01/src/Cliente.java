@@ -3,7 +3,7 @@ public class Cliente {
 
 	private String nome;
 	private String cpf;
-	private VetorJogos historicoCompras[];
+	private ListaJogos historicoCompras[];
 	private double valorComprado;
 	private IFidelidade classificacao; //Tive que inserir esse atributo para fazer o método "mostrarFidelidade" funcionar.
 	
@@ -28,11 +28,11 @@ public class Cliente {
 	}
 	
 	
-	public void setHistoricoDeCompras(VetorJogos vet[])
+	public void setHistoricoDeCompras(ListaJogos vet[])
 	{
 		historicoCompras = vet;
 	}
-	public VetorJogos[] getHistoricoCompras()
+	public ListaJogos[] getHistoricoCompras()
 	{
 		return historicoCompras;
 	}
@@ -49,7 +49,7 @@ public class Cliente {
 	
 	
 
-	public boolean adicionarPedido(VetorJogos pedidos)
+	public boolean adicionarPedido(ListaJogos pedidos)
 	{
 		boolean ok = false;
 		

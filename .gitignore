@@ -25,6 +25,6 @@ hs_err_pid*
 # Others
 .vscode/
 .project
-.projects
 .classpath
+/bin/
 
