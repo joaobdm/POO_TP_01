@@ -141,6 +141,10 @@ public class ListaJogos {
         });
     } 
 
+    /**
+     * ordena do jogo mais velho ao mais novo (ainda não foi feito o metodo que irá calcular o 
+     * desconto de acordo com a "idade")
+     */
     public void ordenaPorCond()
     {
         Arrays.sort(this.jogos, new Comparator<Jogo>()
