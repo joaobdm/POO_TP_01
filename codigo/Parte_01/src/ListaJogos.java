@@ -7,6 +7,10 @@ public class ListaJogos {
     private Jogo[] jogos;
     private StringBuilder sb;
 
+    public Jogo[] getJogos() {
+        return jogos;
+    }
+
     ListaJogos() {
         jogos = new Jogo[MAXJOGOS];
     }
@@ -25,8 +29,8 @@ public class ListaJogos {
 
             if (jogos[i] == null)
                 return false;
-            if (jogos[i].getNome().toLowerCase().equals(nomeDoJogo.toLowerCase()) && 
-            jogos[i].getPlataforma().toLowerCase().equals(plataforma.toLowerCase())) {
+            if (jogos[i].getNome().toLowerCase().equals(nomeDoJogo.toLowerCase())
+                    && jogos[i].getPlataforma().toLowerCase().equals(plataforma.toLowerCase())) {
                 return true;
             }
 
