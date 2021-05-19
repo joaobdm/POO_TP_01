@@ -233,6 +233,19 @@ public class Data {
             System.out.println("NOVA DATA INVÁLIDA, NENHUMA ALTERAÇÃO APLICADA");
     }
 
+    public int getMes() 
+    {
+        return mes;
+    }
+    public int getAno() 
+    {
+        return ano;
+    }
+    public int getDia() 
+    {
+        return dia;
+    }
+
     @Override
     public String toString(){
         String s;

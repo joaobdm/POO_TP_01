@@ -116,24 +116,48 @@ public class ListaJogos {
         else
             return false;
     }
-
-    public void ordenaPorPlatf() {
-        Arrays.sort(this.jogos, new Comparator<Jogo>() {
-            public int compare(Jogo o1, Jogo o2) {
-
-                if (o1 == null || o2 == null)
-                    return 0;
-
-                if (o1.getPlataforma().equals(o2.getPlataforma())) {
+    /**
+    * ordena o vetor em ordem alfabética primeiro comprarando as plataformas, se ouver um "empate", o desempate
+    * será entre o nome do jogo
+    * @param o1 jogo que é reorganizado
+    * @param o2 jogo que é comparado para reorganização
+    */
+    public void ordenaPorPlatf()
+    {
+        Arrays.sort(this.jogos, new Comparator<Jogo>()
+        {
+            public int compare(Jogo o1, Jogo o2)
+            {
+                if(o1.getPlataforma().equals(o2.getPlataforma()))
+                {
                     String a = (String) o1.getNome();
                     String b = (String) o2.getNome();
                     return a.compareTo(b);
-                } else {
+                }
+                else
+                {
                     String a = (String) o1.getPlataforma();
                     String b = (String) o2.getPlataforma();
                     return a.compareTo(b);
                 }
+                
+            }
+        });
+    } 
 
+    /**
+     * ordena do jogo mais velho ao mais novo (ainda não foi feito o metodo que irá calcular o 
+     * desconto de acordo com a "idade")
+     */
+    public void ordenaPorCond()
+    {
+        Arrays.sort(this.jogos, new Comparator<Jogo>()
+        {
+            public int compare(Jogo o1, Jogo o2)
+            {
+                Integer a = (Integer) o1.getDataDeLanc().getAno();
+                Integer b = (Integer) o2.getDataDeLanc().getAno();
+                return a.compareTo(b);
             }
         });
     }
