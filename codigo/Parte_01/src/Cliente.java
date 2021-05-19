@@ -82,7 +82,7 @@ public class Cliente {
 		
 		for(int i = 0; i < this.historicoCompras.length; i++)
 		{
-			VetorJogos carrinhoAtual;
+			ListaJogos carrinhoAtual;
 			carrinhoAtual = historicoCompras[i];
 			
 			Jogo vetorDeJogos[];
