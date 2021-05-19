@@ -7,6 +7,14 @@ public class Cliente {
 	private double valorComprado;
 	private IFidelidade classificacao; //Tive que inserir esse atributo para fazer o método "mostrarFidelidade" funcionar.
 	
+	public Cliente()
+	{
+		nome = null;
+		cpf = null;
+		historicoCompras = new ListaJogos[500];
+		valorComprado = 0;
+		classificacao = null;
+	}
 	
 	public void setNome (String name)
 	{
@@ -55,7 +63,7 @@ public class Cliente {
 		
 		for(int i = 0; i < historicoCompras.length; i++)
 		{
-			if(historicoCompras[i] == null)
+			if(historicoCompras[i] == null && ok == false)
 			{
 				historicoCompras[i] = pedidos;
 				
@@ -84,17 +92,23 @@ public class Cliente {
 		{
 			ListaJogos carrinhoAtual;
 			carrinhoAtual = historicoCompras[i];
-			
-			Jogo vetorDeJogos[];
-			vetorDeJogos = carrinhoAtual.getJogos();
-			
-			for(int j = 0; j < vetorDeJogos.length; j++)
+			if(carrinhoAtual != null)
 			{
-				Jogo jogoAtual;
-				jogoAtual = vetorDeJogos[j];
+				Jogo vetorDeJogos[];
+				vetorDeJogos = carrinhoAtual.getJogos();
 				
-				valorGastoEmCompras = valorGastoEmCompras + jogoAtual.getPreco();
+				for(int j = 0; j < vetorDeJogos.length; j++)
+				{
+					Jogo jogoAtual;
+					jogoAtual = vetorDeJogos[j];
+					
+					if(jogoAtual != null)
+					{
+						valorGastoEmCompras = valorGastoEmCompras + jogoAtual.getPreco();
+					}
+				}
 			}
+
 		}
 		
 		if(valorGastoEmCompras < 600.00)
@@ -112,7 +126,7 @@ public class Cliente {
 			//ouro
 			this.classificacao = new Ouro();
 		}
-		else if(valorGastoEmCompras >= 2000)
+		else if(valorGastoEmCompras >= 2000.00)
 		{
 			//diamante
 			this.classificacao = new Diamante();

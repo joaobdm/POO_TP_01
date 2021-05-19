@@ -21,7 +21,36 @@ public class App {
         vetor.adicionarJogo(jg3);
         vetor.adicionarJogo(jg4);
        // vetor.ordenaPorPlatf();
-        vetor.ordenaPorCond();
+//        vetor.ordenaPorCond();  Comentei para testar!!!!!
         vetor.toString();
+        
+        
+        
+        ListaJogos vetor2 = new ListaJogos();
+        vetor2.adicionarJogo(jg);
+        vetor2.adicionarJogo(jg2);
+        vetor2.adicionarJogo(jg3);
+        vetor2.adicionarJogo(jg4);
+       // vetor.ordenaPorPlatf();
+//        vetor.ordenaPorCond();  Comentei para testar!!!
+        vetor.toString();
+        
+        Cliente novoCliente;
+        novoCliente = new Cliente();
+        
+        
+        novoCliente.adicionarPedido(vetor);
+        
+        novoCliente.atualizaFidelidade();
+        System.out.println(novoCliente.mostraFidelidade());
+        System.out.println();
+        
+        novoCliente.adicionarPedido(vetor2);
+        novoCliente.atualizaFidelidade();
+        System.out.println(novoCliente.mostraFidelidade());
+        System.out.println();
+        
+        
+        
     }
 }
