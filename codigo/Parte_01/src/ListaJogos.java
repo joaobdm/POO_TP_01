@@ -3,7 +3,7 @@ import java.util.Comparator;
 
 public class ListaJogos {
 
-    private static final int MAXJOGOS = 500;
+    private static final int MAXJOGOS = 50;
     private Jogo[] jogos;
     private StringBuilder sb;
 
@@ -128,6 +128,9 @@ public class ListaJogos {
         {
             public int compare(Jogo o1, Jogo o2)
             {
+                if (o1 == null || o2 == null)
+                    return 0;
+
                 if(o1.getPlataforma().equals(o2.getPlataforma()))
                 {
                     String a = (String) o1.getNome();
@@ -155,6 +158,9 @@ public class ListaJogos {
         {
             public int compare(Jogo o1, Jogo o2)
             {
+                if (o1 == null || o2 == null)
+                    return 0;
+
                 Integer a = (Integer) o1.getDataDeLanc().getAno();
                 Integer b = (Integer) o2.getDataDeLanc().getAno();
                 return a.compareTo(b);

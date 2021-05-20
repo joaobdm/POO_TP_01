@@ -5,7 +5,7 @@ public class Cliente {
 	private String cpf;
 	private ListaJogos historicoCompras[];
 	private double valorComprado;
-	private IFidelidade classificacao; //Tive que inserir esse atributo para fazer o método "mostrarFidelidade" funcionar.
+	private IFidelidade classificacao;
 	
 	public Cliente()
 	{
@@ -74,8 +74,7 @@ public class Cliente {
 	}
 	
 	
-	//Nao seria melhor mostrar a fidelidade do cara?
-	//Tipo se no momento ele é "ouro" .."prata"..
+
 	public double checaFidelidade() 
 	{
 		return classificacao.checaFidelidade();
@@ -135,19 +134,14 @@ public class Cliente {
 	
 	
 	
+	@Override
 	public String toString()
 	{
-		
-		String texto = null;
-		
-		for(int i = 0; i < historicoCompras.length; i++)
-		{
-			texto = texto + historicoCompras[i];
-		}
-		
-		return "Cliente: " + this.nome + " CPF: " + this.cpf +
-				"Histórico de compras: " + texto +
-				"Valor da compra atual: " + this.valorComprado;
+		String s;
+		s = String.format("Nome: %s\nCPF: %s\nHistorico: %s\nValor Comprado: %.2f",
+		nome,cpf, historicoCompras.toString(), valorComprado);
+		return s;
+
 	}
 	
 	
