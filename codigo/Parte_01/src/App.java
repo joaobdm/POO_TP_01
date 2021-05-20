@@ -42,12 +42,12 @@ public class App {
         novoCliente.adicionarPedido(vetor);
         
         novoCliente.atualizaFidelidade();
-        System.out.println(novoCliente.mostraFidelidade());
+        System.out.println(novoCliente.checaFidelidade());
         System.out.println();
         
         novoCliente.adicionarPedido(vetor2);
         novoCliente.atualizaFidelidade();
-        System.out.println(novoCliente.mostraFidelidade());
+        System.out.println(novoCliente.checaFidelidade());
         System.out.println();
         
         

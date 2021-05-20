@@ -76,7 +76,7 @@ public class Cliente {
 	
 	//Nao seria melhor mostrar a fidelidade do cara?
 	//Tipo se no momento ele é "ouro" .."prata"..
-	public double mostraFidelidade() 
+	public double checaFidelidade() 
 	{
 		return classificacao.checaFidelidade();
 		
