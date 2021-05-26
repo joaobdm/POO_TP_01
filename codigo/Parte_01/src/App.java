@@ -18,7 +18,7 @@ public class App {
         vetor.adicionarJogo(jg4);
         vetor.ordenaPorPlatf();
         vetor.toString();
-        System.out.println("#################################");
+        System.out.println("################################");
         vetor.ordenaPorCond();
         vetor.toString();
 
