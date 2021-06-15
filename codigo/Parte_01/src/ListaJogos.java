@@ -7,14 +7,19 @@ public class ListaJogos {
     private Jogo[] jogos;
     private StringBuilder sb;
 
-    public Jogo[] getJogos() {
+    
+    public Jogo[] getJogos()
+    {
         return jogos;
     }
 
-    ListaJogos() {
+    
+    ListaJogos()
+    {
         jogos = new Jogo[MAXJOGOS];
     }
 
+    
     /**
      * Através do nome e plataforma, detecta se o jogo já existe no vetor em
      * questão.

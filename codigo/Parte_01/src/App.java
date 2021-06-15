@@ -31,6 +31,10 @@ public class App {
         novoCliente.atualizaFidelidade();
         System.out.println(novoCliente.checaFidelidade());
         System.out.println(novoCliente.toString());
+        
+ 
+        
+        
 
     }
 }
