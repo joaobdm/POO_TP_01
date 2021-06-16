@@ -1,16 +1,17 @@
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 
 public class Loja {
 
-	private Cliente[] clientesCadastrados;
+	private ArrayList<Cliente> clientesCadastrados;
 	private ListaJogos bibliotecaJogos;
 	private ListaJogos carrinhoCompras;
 
 	Loja() {
 
-		clientesCadastrados = new Cliente[1000];		
+		clientesCadastrados = new ArrayList<Cliente>();
 
 		try {
 			carregaBiblioteca();
@@ -56,25 +57,21 @@ public class Loja {
 		novoCliente.setNome(nome);
 		novoCliente.setCpf(cpf);
 
-		for (int i = 0; i < clientesCadastrados.length; i++) {
-			if (clientesCadastrados[i] == null) {
-				clientesCadastrados[i] = novoCliente;
-				break;
-			}
-		}
+		clientesCadastrados.add(novoCliente);
 	}
 
-	public Cliente BuscaCliente(String procurado) // Coloquei um retorno. E coloquei como parâmetro de busca o cpf.
+	public Cliente buscaCliente(String procurado) // Coloquei um retorno. E coloquei como parâmetro de busca o cpf.
 	{
-		Cliente pessoa = null;
 
-		for (int i = 0; i < clientesCadastrados.length; i++) {
-			if (clientesCadastrados[i].getCpf() == procurado) {
-				pessoa = clientesCadastrados[i];
+		for (int i = 0; i < clientesCadastrados.size(); i++) {
+			if (clientesCadastrados.get(i).getCpf() == procurado) {
+				return clientesCadastrados.get(i);
 			}
 		}
 
-		return pessoa;
+		System.out.println("Cliente não encontrado");
+		return null;
+
 	}
 
 	public void iniciaPedido() // Não deveria passar um cliente?
@@ -93,6 +90,13 @@ public class Loja {
 	{
 
 		return bibliotecaJogos.buscaJogo(nome, plataforma);
+
+	}
+
+	public boolean buscaJogo(String nome) // Coloquei um parâmentro e um retorno.
+	{
+
+		return bibliotecaJogos.buscaJogo(nome);
 
 	}
 
@@ -135,7 +139,7 @@ public class Loja {
 
 	}
 
-	public void mostraLojaCompleta(){
+	public void mostraLojaCompleta() {
 		bibliotecaJogos.toString();
 	}
 }
