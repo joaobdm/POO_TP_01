@@ -3,7 +3,7 @@ import java.util.Comparator;
 
 public class ListaJogos {
 
-    private static final int MAXJOGOS = 50;
+    private int MAXJOGOS;
     private Jogo[] jogos;
     private StringBuilder sb;
 
@@ -14,9 +14,10 @@ public class ListaJogos {
     }
 
     
-    ListaJogos()
-    {
-        jogos = new Jogo[MAXJOGOS];
+    ListaJogos(int tamanho)
+    {   
+        MAXJOGOS = tamanho;
+        jogos = new Jogo[tamanho];
     }
 
     
