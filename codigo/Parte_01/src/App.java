@@ -5,6 +5,10 @@ public class App {
         
  
         loja.mostraLojaCompleta();
+
+        loja.cadastraCliente("JOAO", "059.551.236-44");
+
+        loja.buscaCliente("JOAO");
         
 
     }
