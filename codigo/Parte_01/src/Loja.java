@@ -13,7 +13,7 @@ public class Loja {
     
     
     
-    public double calculaDesconto (Cliente cliente) //coloquei um retorno para pegar o desconto do cliente especÌfico.
+    public double calculaDesconto (Cliente cliente) //coloquei um retorno para pegar o desconto do cliente espec√≠fico.
     {
     	double descontoCategoria;
     	descontoCategoria = 0;
@@ -46,7 +46,7 @@ public class Loja {
     
     
     
-    public void cadastraCliente(String nome, String cpf) //Coloquei par‚metros.
+    public void cadastraCliente(String nome, String cpf) //Coloquei par√¢metros.
     {
     	
     	Cliente novoCliente = new Cliente();
@@ -67,7 +67,7 @@ public class Loja {
     
 
     
-    public Cliente BuscaCliente(String procurado) //Coloquei um retorno. E coloquei como par‚metro de busca o cpf.
+    public Cliente BuscaCliente(String procurado) //Coloquei um retorno. E coloquei como par√¢metro de busca o cpf.
     {
     	Cliente pessoa = null;
     	
@@ -84,14 +84,14 @@ public class Loja {
     
     
     
-    public void iniciaPedido() //N„o deveria passar um cliente?
+    public void iniciaPedido() //N√£o deveria passar um cliente?
     {
         carrinhoCompras = new ListaJogos();
     }
     
     
     
-    public void fechaPedido(Cliente clienteAtual) //Coloquei o carrinho atual no histÛrico do cliente. E j· abri um novo.
+    public void fechaPedido(Cliente clienteAtual) //Coloquei o carrinho atual no hist√≥rico do cliente. E j√° abri um novo.
     {
     	clienteAtual.adicionarPedido(carrinhoCompras);
     	this.iniciaPedido();
@@ -99,7 +99,7 @@ public class Loja {
     
     
     
-    public boolean buscaJogo(String nome, String plataforma) //Coloquei um par‚mentro e um retorno.
+    public boolean buscaJogo(String nome, String plataforma) //Coloquei um par√¢mentro e um retorno.
     {
     	
     	return bibliotecaJogos.buscaJogo(nome, plataforma);
@@ -107,7 +107,7 @@ public class Loja {
     }
     
     
-    //Percebi que em nenhum momento est·vamos adicionando os jogos ao carrinho aqui na loja...
+    //Percebi que em nenhum momento est√°vamos adicionando os jogos ao carrinho aqui na loja...
     public boolean adicionaAoCarrinho(Jogo jogoEscolhido)
     {
     	return carrinhoCompras.adicionarJogo(jogoEscolhido);
