@@ -4,18 +4,7 @@ public class App {
         Loja loja = new Loja();
         
  
-        loja.mostraLojaCompleta();
-
-        // loja.cadastraCliente("JOAO", "059.551.236-44");
-
-        
-        // loja.iniciaPedido();
-
- 
-        // loja.adicionaAoCarrinho("Shields","Plaijdfefg");
-
-
-        // loja.mostraCarrinho();
+        loja.menuInterativo();
         
 
     }
