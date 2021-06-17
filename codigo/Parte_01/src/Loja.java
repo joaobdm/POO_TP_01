@@ -181,13 +181,30 @@ public class Loja {
 
 	public void adicionaAoCarrinho(String jogoEscolhido, String plataforma) throws Exception {
 		try {
-			carrinhoCompras.adicionarJogo(bibliotecaJogos.buscaJogo(jogoEscolhido, plataforma));
+			Jogo aux = cloneJogoComDesconto(bibliotecaJogos.buscaJogo(jogoEscolhido, plataforma));
+
+			carrinhoCompras.adicionarJogo(aux);
 
 		} catch (NullPointerException e0) {
 			System.out.println("Jogo buscado para plataforma escolhida não foi encontrado");
 		} catch (ArrayIndexOutOfBoundsException e1) {
 			System.out.println("Carrinho de compras cheio");
 		}
+
+	}
+
+	private Jogo cloneJogoComDesconto(Jogo j) {
+		Jogo copia;
+		if (j.getPlataforma().equals("Computador")) {
+			copia = new Computador(j.getNome(), j.getPrecoBase(), j.getDataDeLanc());
+		} else if (j.getPlataforma().equals("Playstation")) {
+			copia = new Playstation(j.getNome(), j.getPrecoBase(), j.getDataDeLanc());
+		} else {
+			copia = new Xbox(j.getNome(), j.getPrecoBase(), j.getDataDeLanc());
+		}
+
+		copia.setPreco(copia.getPreco() * descontData(copia));
+		return copia;
 
 	}
 
@@ -236,8 +253,25 @@ public class Loja {
 
 	}
 
-	private int comparaData(Jogo j){
-		return dataDeHoje.comparaData(j.getDataDeLanc());
+	private int comparaData(Jogo j) {
+		return dataDeHoje.diferencaDias(j.getDataDeLanc());
+	}
+
+	private double descontData(Jogo j) {
+
+		int diferencaDias = comparaData(j);
+
+		if (diferencaDias < 365) {
+			return 1;
+		}
+
+		if (diferencaDias > 365 && diferencaDias < 730) {
+			return 0.85;
+		}
+
+		else {
+			return 0.75;
+		}
 	}
 
 	public void menuInterativo() {
