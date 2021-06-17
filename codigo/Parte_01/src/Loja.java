@@ -82,7 +82,7 @@ public class Loja {
 
 	}
 
-	public void esvaziaCarrinho() // Não deveria passar um cliente?
+	public void esvaziaCarrinho()
 	{
 		carrinhoCompras = new ListaJogos(100);
 	}
@@ -124,7 +124,7 @@ public class Loja {
 		}
 	}
 
-	public boolean buscaJogo(String nome, String plataforma) // Coloquei um parâmentro e um retorno.
+	public boolean buscaJogo(String nome, String plataforma)
 	{
 
 		return bibliotecaJogos.existeJogo(nome, plataforma);
