@@ -7,7 +7,8 @@ public class Data {
     private int ano;
 
     /**
-     * Construtor simples que retorna um objeto com Data com um dia a mais em relação a data mais recente
+     * Construtor simples que retorna um objeto com Data com um dia a mais em
+     * relação a data mais recente
      */
     public Data() {
         if (contadorExecucao < 2) {
@@ -26,7 +27,9 @@ public class Data {
     }
 
     /**
-     * Construtor com parâmetros, sendo possível construir qualquer data válida a partir de 1/1/1900
+     * Construtor com parâmetros, sendo possível construir qualquer data válida a
+     * partir de 1/1/1900
+     * 
      * @param dia
      * @param mes
      * @param ano
@@ -195,7 +198,9 @@ public class Data {
     }
 
     /**
-     * Passa como parâmetro o número de dias que deseja acrescentar a data em questão
+     * Passa como parâmetro o número de dias que deseja acrescentar a data em
+     * questão
+     * 
      * @param diasExtras número inteiro de dias a ser passado como parâmetro
      */
     public void somarDias(int diasExtras) {
@@ -210,7 +215,9 @@ public class Data {
     }
 
     /**
-     * Altera a data do objeta por qualquer data a partir de 1/1/1900 a ser passada como parâmetro
+     * Altera a data do objeta por qualquer data a partir de 1/1/1900 a ser passada
+     * como parâmetro
+     * 
      * @param novoDia
      * @param novoMes
      * @param novoAno
@@ -233,31 +240,34 @@ public class Data {
             System.out.println("NOVA DATA INVÁLIDA, NENHUMA ALTERAÇÃO APLICADA");
     }
 
-    public int getMes() 
-    {
+    public int getMes() {
         return mes;
     }
-    public int getAno() 
-    {
+
+    public int getAno() {
         return ano;
     }
-    public int getDia() 
-    {
+
+    public int getDia() {
         return dia;
     }
 
+    public int diferencaDias(Data novaData) {
+        Data aux = new Data(novaData.getDia(), novaData.getMes(), novaData.getAno());
+        int count = 0;
+        while(!aux.toString().equals(this.toString())){
+            aux.somarDias(1);
+            count++;
+        }
+
+        return count;
+    }
+
     @Override
-    public String toString(){
+    public String toString() {
         String s;
-        s = dia+"/"+mes+"/"+ano;
+        s = dia + "/" + mes + "/" + ano;
         return s;
     }
 
-    // public void altera(){
-    //     contadorExecucao = 5;        
-    // }
-
-    // public void alteraMostra(){        
-    //     System.out.println(contadorExecucao);
-    // }
 }
