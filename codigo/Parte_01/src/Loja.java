@@ -27,7 +27,7 @@ public class Loja {
 			System.out.println("Ocorreu um erro inesperado");
 		}
 
-		carrinhoCompras = new ListaJogos(100);
+		iniciaPedido();
 	}
 
 	/**
@@ -86,12 +86,10 @@ public class Loja {
 	}
 
 	public void cadastraCliente(String nome, String cpf) {
-
-		if (!checaCliente(cpf)) {
-			Cliente novoCliente = new Cliente();
-
-			novoCliente.setNome(nome);
-			novoCliente.setCpf(cpf);
+		if (cpf.equals(""))
+			System.out.println("O CPF informado não pode estar em branco");
+		else if (!clienteJaCadastrado(cpf)) {
+			Cliente novoCliente = new Cliente(nome, cpf);
 
 			clientesCadastrados.add(novoCliente);
 			System.out.println("Cliente cadastrado com sucesso");
@@ -229,11 +227,11 @@ public class Loja {
 
 	}
 
-	private boolean checaCliente(String cpf) {
+	private boolean clienteJaCadastrado(String cpf) {
 		boolean resp = false;
 
 		for (int i = 0; i < clientesCadastrados.size(); i++) {
-			if (clientesCadastrados.get(i).getCpf() == cpf) {
+			if (clientesCadastrados.get(i).getCpf().equals(cpf)) {
 				resp = true;
 				return resp;
 			}
@@ -274,34 +272,44 @@ public class Loja {
 
 	}
 
-	public void menuInterativo() throws Exception {
+	public void menuInterativo() {
 
 		int opcao = 0;
-		imprimeMenu();
-		do {
-			opcao = Integer.parseInt(teclado());
-			switch (opcao) {
-				case 1:
-					cadastraCliente();
-					break;
-				case 2:
-					iniciaPedido();
-					System.out.println("Vamos começar as compras !");
-					break;
-				case 3:
-					buscaJogo();
-					break;
-				case 4:
-					mostraCarrinho();
-					break;
-				case 5:
-					fechaPedido();
-					break;
-				default:
-					break;
-			}
+		try {
+			do {
+				imprimeMenu();
+				opcao = Integer.parseInt(teclado());
+				switch (opcao) {
+					case 0:
+						System.out.println("Obrigado e volte sempre !!! :D");
+						break;
+					case 1:
+						cadastraCliente();
+						break;
+					case 2:
+						iniciaPedido();
+						System.out.println("Vamos começar as compras !");
+						break;
+					case 3:
+						buscaJogo();
+						break;
+					case 4:
+						mostraCarrinho();
+						break;
+					case 5:
+						fechaPedido();
+						break;
+					default:
+						System.out.println("Opção deve ser um número de 0-5");
+						break;
+				}
 
-		} while (opcao != 0);
+			} while (opcao != 0);
+		} catch (NumberFormatException nfe) {
+			System.out.println("Escolha um número de opção VÁLIDO !");
+			menuInterativo();
+		} catch (Exception e) {
+		}
 	}
 
 	private void imprimeMenu() {
@@ -327,6 +335,9 @@ public class Loja {
 	}
 
 	public void mostraCarrinho() {
-		carrinhoCompras.toString();
+		if (carrinhoCompras.getJogos()[0] == null)
+			System.out.println("Carrinho está vazio ! Deixe de ser pão duro");
+		else
+			carrinhoCompras.toString();
 	}
 }
