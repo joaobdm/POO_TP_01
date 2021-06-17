@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -236,44 +238,34 @@ public class Loja {
 
 	}
 
-	public void menuInterativo() {
-		String opcao = "0";
-		Scanner sc2 = new Scanner(System.in);
-		try {
-			do {
-				imprimeMenu();
+	public void menuInterativo() throws Exception {
+		
+		int opcao = 0;
+		imprimeMenu();
+		do {
+			opcao = Integer.parseInt(teclado()); 
+			switch (opcao) {
+				case 1:
+					cadastraCliente();
+					break;
+				case 2:
+					iniciaPedido();
+					System.out.println("Vamos começar as compras !");
+					break;
+				case 3:
+					buscaJogo();
+					break;
+				case 4:
+					mostraCarrinho();
+					break;
+				case 5:
+					fechaPedido();
+					break;
+				default:
+					break;
+			}
 
-				try {
-					opcao = sc2.nextLine();
-				} catch (NoSuchElementException e) {
-					opcao = sc2.next();
-				}
-
-				switch (opcao) {
-					case "1":
-						cadastraCliente();
-						break;
-					case "2":
-						iniciaPedido();
-						System.out.println("Vamos começar as compras !");
-						break;
-					case "3":
-						buscaJogo();
-						break;
-					case "4":
-						mostraCarrinho();
-						break;
-					case "5":
-						fechaPedido();
-						break;
-					default:						
-						break;
-				}
-			} while (!opcao.equals("0"));
-		} catch (NoSuchElementException nsee) {
-			nsee.printStackTrace();
-		}
-		sc2.close();
+		} while (opcao != 0);		
 	}
 
 	private void imprimeMenu() {
@@ -287,6 +279,13 @@ public class Loja {
 		System.out.println("[0] Sair");
 	}
 
+	private String teclado() throws IOException {
+		String s;
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		s = br.readLine();
+		br.close();
+		return s;
+	}
 	public void mostraLojaCompleta() {
 		bibliotecaJogos.toString();
 	}
