@@ -301,6 +301,10 @@ public class Loja {
 					case 5:
 						fechaPedido();
 						break;
+					case 6:
+						bibliotecaJogos.ordenaPorPlatf();
+						mostraLojaCompleta();
+						break;
 					default:
 						System.out.println("Opção deve ser um número de 0-5");
 						break;
@@ -318,10 +322,11 @@ public class Loja {
 		System.out.println("\n########## MENU DA LOJA ##########\n");
 		System.out.println("Selecione a opção desejada:");
 		System.out.println("[1] Cadastrar Cliente");
-		System.out.println("[2] Abrir Pedido");
+		System.out.println("[2] Esvaziar Carrinho");
 		System.out.println("[3] Buscar Jogo na biblioteca");
 		System.out.println("[4] Mostrar carrinho");
 		System.out.println("[5] Fechar Pedido");
+		System.out.println("[6] Mostrar todos os jogos");
 		System.out.println("[0] Sair");
 	}
 
