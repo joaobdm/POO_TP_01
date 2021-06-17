@@ -1,6 +1,6 @@
 public class Ouro implements IFidelidade{
 	
-	private static final double PERCENTUALDESCONTO = 0.8;
+	private static final double PERCENTUALDESCONTO = 0.2;
 	
     @Override
     public double checaFidelidade() 

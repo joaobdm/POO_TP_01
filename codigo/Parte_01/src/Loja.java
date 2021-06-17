@@ -27,62 +27,25 @@ public class Loja {
 			System.out.println("Ocorreu um erro inesperado");
 		}
 
-		iniciaPedido();
+		esvaziaCarrinho();
 	}
 
 	/**
-	 * Esse m�todo calcula desconto de uma determinada compra. Para isso, ele soma
+	 * Esse método calcula desconto de uma determinada compra. Para isso, ele soma
 	 * todos os valores dos jogos do carrinho. Logo ap�s, multimplica pelo desconto
-	 * referente � categoria do cliente.
+	 * referente a categoria do cliente.
 	 * 
 	 * @param cliente - cliente que est� realizando a compra.
 	 * @return valor me reais do desconto da compra.
 	 */
-	public double calculaDesconto(Cliente cliente) {
-		/*
-		 * MÉTODO DEVE APENAS FAZER O CALCULO DOS PRODUTOS DO CARRINHO E MULTIPLICAR
-		 * PELO DESCONTO QUE DEVE SER RETORNADO EM UM MÉTODO PELA CLASSE CLIENTE.
-		 */
-
-		double descontoCategoria;
-		descontoCategoria = 0;
-
-		descontoCategoria = cliente.checaFidelidade();
-
-		double somaCarrinho;
-		somaCarrinho = 0;
-
-		Jogo vetor[];
-		vetor = carrinhoCompras.getJogos();
-
-		for (int i = 0; i < vetor.length; i++) {
-			somaCarrinho = somaCarrinho + vetor[i].getPreco();
-		}
+	private double calculaDesconto(Cliente cliente) {
+		double descontoCategoria = cliente.checaFidelidade();
 
 		double descontoProdutos;
-		descontoProdutos = 0;
 
-		descontoProdutos = somaCarrinho / descontoCategoria;
+		descontoProdutos = carrinhoCompras.precoTotal() * descontoCategoria;
 
 		return descontoProdutos;
-	}
-
-	/**
-	 *
-	 * @return Retorna o valor total do carrinho de compras, ainda sem desconto.
-	 */
-	public double calculaValorPagar() {
-		Jogo vetor[];
-		vetor = carrinhoCompras.getJogos();
-
-		double somaCarrinho;
-		somaCarrinho = 0;
-
-		for (int i = 0; i < vetor.length; i++) {
-			somaCarrinho = somaCarrinho + vetor[i].getPreco();
-		}
-
-		return somaCarrinho;
 	}
 
 	public void cadastraCliente(String nome, String cpf) {
@@ -109,7 +72,7 @@ public class Loja {
 	public Cliente buscaCliente(String cpf) {
 
 		for (int i = 0; i < clientesCadastrados.size(); i++) {
-			if (clientesCadastrados.get(i).getCpf() == cpf) {
+			if (clientesCadastrados.get(i).getCpf().equals(cpf)) {
 				return clientesCadastrados.get(i);
 			}
 		}
@@ -119,7 +82,7 @@ public class Loja {
 
 	}
 
-	public void iniciaPedido() // Não deveria passar um cliente?
+	public void esvaziaCarrinho() // Não deveria passar um cliente?
 	{
 		carrinhoCompras = new ListaJogos(100);
 	}
@@ -133,7 +96,7 @@ public class Loja {
 			descontoNaCompraAtual = this.calculaDesconto(clienteAtual);
 
 			double valorPagar;
-			valorPagar = this.calculaValorPagar() - descontoNaCompraAtual;
+			valorPagar = carrinhoCompras.precoTotal() - descontoNaCompraAtual;
 
 			System.out.printf("Valor a pagar: %.2f", valorPagar);
 			System.out.println();
@@ -143,20 +106,22 @@ public class Loja {
 
 			clienteAtual.atualizaFidelidade();
 
-			// Método do calculo da compra vem aqui miriam
-
-			this.iniciaPedido();
+			this.esvaziaCarrinho();
 		} catch (NullPointerException e0) {
-			System.out.println("O pedido deve ser fechado em nome de um cliente já cadastrado");
+			System.out.println("Pedido não pode ser fechado sem um cliente");
 		}
 	}
 
 	private void fechaPedido() throws IOException {
-		Cliente clienteAtual;
-		System.out.print("Digite o CPF do cliente (Somente números): ");
-		String cpf = teclado();
-		clienteAtual = buscaCliente(cpf);
-		fechaPedido(clienteAtual);
+		if (carrinhoCompras.precoTotal() == 0) {
+			System.out.println("Pedido não pode ser fechado com um carrinho vazio");
+		} else {
+			Cliente clienteAtual;
+			System.out.print("Digite o CPF do cliente (Somente números): ");
+			String cpf = teclado();
+			clienteAtual = buscaCliente(cpf);
+			fechaPedido(clienteAtual);
+		}
 	}
 
 	public boolean buscaJogo(String nome, String plataforma) // Coloquei um parâmentro e um retorno.
@@ -213,8 +178,6 @@ public class Loja {
 			System.out.println("Infelizmente não temos esse jogo :(");
 	}
 
-	// Percebi que em nenhum momento estávamos adicionando os jogos ao carrinho aqui
-	// na loja...
 	public void adicionaAoCarrinho(String jogoEscolhido, String plataforma) throws Exception {
 		try {
 			carrinhoCompras.adicionarJogo(bibliotecaJogos.buscaJogo(jogoEscolhido, plataforma));
@@ -287,7 +250,7 @@ public class Loja {
 						cadastraCliente();
 						break;
 					case 2:
-						iniciaPedido();
+						esvaziaCarrinho();
 						System.out.println("Vamos começar as compras !");
 						break;
 					case 3:

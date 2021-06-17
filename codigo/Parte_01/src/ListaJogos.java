@@ -138,6 +138,19 @@ public class ListaJogos {
         }
     }
 
+    public double precoTotal() {
+        double preco = 0;
+
+        for (int i = 0; i < jogos.length; i++) {
+            if (jogos[i] != null) {
+                preco += jogos[i].getPreco();
+            } else
+                break;
+        }
+
+        return preco;
+    }
+
     /**
      * ordena o vetor em ordem alfabética primeiro comprarando as plataformas, se
      * ouver um "empate", o desempate será entre o nome do jogo
