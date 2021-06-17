@@ -132,10 +132,9 @@ public class ListaJogos {
 
             }
         } catch (Exception e0) {
-            e0.printStackTrace();
-        } finally {
-            return buscado;
         }
+        return buscado;
+
     }
 
     public double precoTotal() {
