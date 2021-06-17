@@ -10,8 +10,9 @@ public class Loja {
 	private ArrayList<Cliente> clientesCadastrados;
 	private ListaJogos bibliotecaJogos;
 	private ListaJogos carrinhoCompras;
+	private Data dataDeHoje;
 
-	Loja() {
+	Loja(Data hoje) {
 
 		clientesCadastrados = new ArrayList<Cliente>();
 
@@ -26,6 +27,8 @@ public class Loja {
 		} catch (Exception e2) {
 			System.out.println("Ocorreu um erro inesperado");
 		}
+
+		dataDeHoje = hoje;
 
 		esvaziaCarrinho();
 	}
@@ -82,8 +85,7 @@ public class Loja {
 
 	}
 
-	public void esvaziaCarrinho()
-	{
+	public void esvaziaCarrinho() {
 		carrinhoCompras = new ListaJogos(100);
 	}
 
@@ -124,8 +126,7 @@ public class Loja {
 		}
 	}
 
-	public boolean buscaJogo(String nome, String plataforma)
-	{
+	public boolean buscaJogo(String nome, String plataforma) {
 
 		return bibliotecaJogos.existeJogo(nome, plataforma);
 
@@ -233,6 +234,10 @@ public class Loja {
 
 		reader.close();
 
+	}
+
+	private int comparaData(Jogo j){
+		return dataDeHoje.comparaData(j.getDataDeLanc());
 	}
 
 	public void menuInterativo() {
