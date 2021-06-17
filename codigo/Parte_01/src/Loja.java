@@ -17,15 +17,23 @@ public class Loja {
 			carregaBiblioteca();
 		} catch (FileNotFoundException e) {
 			System.out.println("Arquivo contendo jogos disponíveis na loja não encontrado");
-		} catch (Exception e1) {
-			e1.printStackTrace();
+		} catch (NumberFormatException e0) {
+			System.out.println("Conteúdo do arquivo não condiz com o esperado: Formatação de número");
+		} catch (NullPointerException e1) {
+			System.out.println("Conteúdo do arquivo não condiz com o esperado");
+		} catch (Exception e2) {
+			System.out.println("Ocorreu um erro inesperado");			
 		}
 
 		carrinhoCompras = new ListaJogos(100);
 	}
 
-	public double calculaDesconto(Cliente cliente) // coloquei um retorno para pegar o desconto do cliente específico.
-	{
+	public double calculaDesconto(Cliente cliente) {
+		/*
+		 * MÉTODO DEVE APENAS FAZER O CALCULO DOS PRODUTOS DO CARRINHO E MULTIPLICAR
+		 * PELO DESCONTO QUE DEVE SER RETORNADO EM UM MÉTODO PELA CLASSE CLIENTE.
+		 */
+
 		double descontoCategoria;
 		descontoCategoria = 0;
 
@@ -49,22 +57,23 @@ public class Loja {
 		return descontoProdutos;
 	}
 
-	public void cadastraCliente(String nome, String cpf) // Coloquei parâmetros.
-	{
+	public void cadastraCliente(String nome, String cpf) {
 
-		Cliente novoCliente = new Cliente();
+		if (!checaCliente(cpf)) {
+			Cliente novoCliente = new Cliente();
 
-		novoCliente.setNome(nome);
-		novoCliente.setCpf(cpf);
+			novoCliente.setNome(nome);
+			novoCliente.setCpf(cpf);
 
-		clientesCadastrados.add(novoCliente);
+			clientesCadastrados.add(novoCliente);
+		} else
+			System.out.println("CPF já consta no banco de cadastro");
 	}
 
-	public Cliente buscaCliente(String procurado) // Coloquei um retorno. E coloquei como parâmetro de busca o cpf.
-	{
+	public Cliente buscaCliente(String cpf) {
 
 		for (int i = 0; i < clientesCadastrados.size(); i++) {
-			if (clientesCadastrados.get(i).getCpf() == procurado) {
+			if (clientesCadastrados.get(i).getCpf() == cpf) {
 				return clientesCadastrados.get(i);
 			}
 		}
@@ -79,31 +88,53 @@ public class Loja {
 		carrinhoCompras = new ListaJogos(100);
 	}
 
-	public void fechaPedido(Cliente clienteAtual) // Coloquei o carrinho atual no histórico do cliente. E já abri um
-													// novo.
-	{
-		clienteAtual.adicionarPedido(carrinhoCompras);
-		this.iniciaPedido();
+	public void fechaPedido(Cliente clienteAtual) {
+		try {
+			clienteAtual.adicionarPedido(carrinhoCompras);
+			// Método do calculo da compra vem aqui miriam
+			this.iniciaPedido();
+		} catch (NullPointerException e0) {
+			System.out.println("O pedido deve ser fechado em nome de um cliente já cadastrado");
+		}
 	}
 
 	public boolean buscaJogo(String nome, String plataforma) // Coloquei um parâmentro e um retorno.
 	{
 
-		return bibliotecaJogos.buscaJogo(nome, plataforma);
+		return bibliotecaJogos.existeJogo(nome, plataforma);
 
 	}
 
 	public boolean buscaJogo(String nome) // Coloquei um parâmentro e um retorno.
 	{
 
-		return bibliotecaJogos.buscaJogo(nome);
+		return bibliotecaJogos.existeJogo(nome);
 
 	}
 
 	// Percebi que em nenhum momento estávamos adicionando os jogos ao carrinho aqui
 	// na loja...
-	public boolean adicionaAoCarrinho(Jogo jogoEscolhido) {
-		return carrinhoCompras.adicionarJogo(jogoEscolhido);
+	public void adicionaAoCarrinho(String jogoEscolhido, String plataforma) throws Exception {
+		try {
+			carrinhoCompras.adicionarJogo(bibliotecaJogos.buscaJogo(jogoEscolhido, plataforma));
+
+		} catch (NullPointerException e0) {
+			System.out.println("Jogo buscado para plataforma escolhida não foi encontrado");
+		} catch (ArrayIndexOutOfBoundsException e1) {
+			System.out.println("Carrinho de compras cheio");
+		}
+
+	}
+
+	private boolean checaCliente(String cpf) {
+		boolean resp = false;
+		for (int i = 0; i < clientesCadastrados.size(); i++) {
+			if (clientesCadastrados.get(i).getCpf() == cpf) {
+				resp = true;
+				return resp;
+			}
+		}
+		return resp;
 	}
 
 	private void carregaBiblioteca() throws Exception {
@@ -113,10 +144,10 @@ public class Loja {
 		String[] divided, dateString;
 		Jogo jogo;
 		Data dataLanc;
-		int c = Integer.parseInt(reader.readLine());
-		bibliotecaJogos = new ListaJogos(c);
+		int tamanho = Integer.parseInt(reader.readLine());
+		bibliotecaJogos = new ListaJogos(tamanho);
 
-		for (int i = 0; i < c; i++) {
+		for (int i = 0; i < tamanho; i++) {
 
 			aux = reader.readLine();
 			divided = aux.split(",");
@@ -141,5 +172,9 @@ public class Loja {
 
 	public void mostraLojaCompleta() {
 		bibliotecaJogos.toString();
+	}
+
+	public void mostraCarrinho() {
+		carrinhoCompras.toString();
 	}
 }

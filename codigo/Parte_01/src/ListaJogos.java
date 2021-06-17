@@ -7,20 +7,15 @@ public class ListaJogos {
     private Jogo[] jogos;
     private StringBuilder sb;
 
-    
-    public Jogo[] getJogos()
-    {
+    public Jogo[] getJogos() {
         return jogos;
     }
 
-    
-    ListaJogos(int tamanho)
-    {   
+    ListaJogos(int tamanho) {
         MAXJOGOS = tamanho;
         jogos = new Jogo[tamanho];
     }
 
-    
     /**
      * Através do nome e plataforma, detecta se o jogo já existe no vetor em
      * questão.
@@ -29,7 +24,7 @@ public class ListaJogos {
      * @param plataforma
      * @return
      */
-    public boolean buscaJogo(String nomeDoJogo, String plataforma) {
+    public boolean existeJogo(String nomeDoJogo, String plataforma) {
 
         for (int i = 0; i < jogos.length; i++) {
 
@@ -48,12 +43,12 @@ public class ListaJogos {
      * Método sobre carregado, retornando simplesmente se o jogo existe,
      * independente da plataforma
      */
-    public boolean buscaJogo(String nomeDoJogo) {
-        if (buscaJogo(nomeDoJogo, "Computador"))
+    public boolean existeJogo(String nomeDoJogo) {
+        if (existeJogo(nomeDoJogo, "Computador"))
             return true;
-        if (buscaJogo(nomeDoJogo, "Playstation"))
+        if (existeJogo(nomeDoJogo, "Playstation"))
             return true;
-        if (buscaJogo(nomeDoJogo, "Xbox"))
+        if (existeJogo(nomeDoJogo, "Xbox"))
             return true;
         else
             return false;
@@ -72,7 +67,7 @@ public class ListaJogos {
             return true;
         }
 
-        else if (!buscaJogo(j.getNome(), j.getPlataforma()) && !vetorCheio()) {
+        else if (!existeJogo(j.getNome(), j.getPlataforma()) && !vetorCheio()) {
             for (int i = 0; i < jogos.length; i++) {
                 if (jogos[i] == null) {
                     jogos[i] = j;
@@ -122,48 +117,61 @@ public class ListaJogos {
         else
             return false;
     }
+
+    public Jogo buscaJogo(String nomeDoJogo, String plataforma) throws Exception {
+
+        Jogo buscado = null;
+
+        try {
+            for (int i = 0; i < jogos.length; i++) {
+
+                if (jogos[i].getNome().toLowerCase().equals(nomeDoJogo.toLowerCase())
+                        && jogos[i].getPlataforma().toLowerCase().equals(plataforma.toLowerCase())) {
+                    buscado = jogos[i];
+                }
+
+            }
+        } catch (Exception e0) {
+            e0.printStackTrace();
+        } finally {
+            return buscado;
+        }
+    }
+
     /**
-    * ordena o vetor em ordem alfabética primeiro comprarando as plataformas, se ouver um "empate", o desempate
-    * será entre o nome do jogo
-    * @param o1 jogo que é reorganizado
-    * @param o2 jogo que é comparado para reorganização
-    */
-    public void ordenaPorPlatf()
-    {
-        Arrays.sort(this.jogos, new Comparator<Jogo>()
-        {
-            public int compare(Jogo o1, Jogo o2)
-            {
+     * ordena o vetor em ordem alfabética primeiro comprarando as plataformas, se
+     * ouver um "empate", o desempate será entre o nome do jogo
+     * 
+     * @param o1 jogo que é reorganizado
+     * @param o2 jogo que é comparado para reorganização
+     */
+    public void ordenaPorPlatf() {
+        Arrays.sort(this.jogos, new Comparator<Jogo>() {
+            public int compare(Jogo o1, Jogo o2) {
                 if (o1 == null || o2 == null)
                     return 0;
 
-                if(o1.getPlataforma().equals(o2.getPlataforma()))
-                {
+                if (o1.getPlataforma().equals(o2.getPlataforma())) {
                     String a = (String) o1.getNome();
                     String b = (String) o2.getNome();
                     return a.compareTo(b);
-                }
-                else
-                {
+                } else {
                     String a = (String) o1.getPlataforma();
                     String b = (String) o2.getPlataforma();
                     return a.compareTo(b);
                 }
-                
+
             }
         });
-    } 
+    }
 
     /**
-     * ordena do jogo mais velho ao mais novo (ainda não foi feito o metodo que irá calcular o 
-     * desconto de acordo com a "idade")
+     * ordena do jogo mais velho ao mais novo (ainda não foi feito o metodo que irá
+     * calcular o desconto de acordo com a "idade")
      */
-    public void ordenaPorCond()
-    {
-        Arrays.sort(this.jogos, new Comparator<Jogo>()
-        {
-            public int compare(Jogo o1, Jogo o2)
-            {
+    public void ordenaPorCond() {
+        Arrays.sort(this.jogos, new Comparator<Jogo>() {
+            public int compare(Jogo o1, Jogo o2) {
                 if (o1 == null || o2 == null)
                     return 0;
 
