@@ -14,7 +14,11 @@ public class Cliente {
 		historicoCompras = new ListaJogos[500];
 		valorComprado = 0;
 		classificacao = null;
+		
+		this.atualizaFidelidade();
 	}
+	
+	
 	
 	public void setNome (String name)
 	{
@@ -75,14 +79,22 @@ public class Cliente {
 	
 	
 
+	/**
+	 * Esse método depende da chamada, prévia, do método "atualizaFidelidade".
+	 * @return retorna o percentual do desconto que o cliente tem direito
+	 * de acordo com sua categoria.
+	 */
 	public double checaFidelidade() 
 	{
 		return classificacao.checaFidelidade();
-		
 	}
 	
 
-	
+	/**
+	 * Esse método atualiza a classe de fidelidade com base no histórico de compras.
+	 * Justamente por ser tão relevante, ele é chamado inclusive no construtor dessa classe.
+	 *
+	 */
 	public void atualizaFidelidade()
 	{
 		double valorGastoEmCompras = 0.0;
@@ -91,6 +103,7 @@ public class Cliente {
 		{
 			ListaJogos carrinhoAtual;
 			carrinhoAtual = historicoCompras[i];
+			
 			if(carrinhoAtual != null)
 			{
 				Jogo vetorDeJogos[];
@@ -143,7 +156,6 @@ public class Cliente {
 		return s;
 
 	}
-	
 	
 }
 
