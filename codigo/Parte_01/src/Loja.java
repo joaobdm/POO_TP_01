@@ -31,15 +31,14 @@ public class Loja {
 	}
 
 	/**
-	 * Esse m�todo calcula desconto de uma determinada compra.
-	 * Para isso, ele soma todos os valores dos jogos do carrinho.
-	 * Logo ap�s, multimplica pelo desconto referente � categoria do cliente.
+	 * Esse m�todo calcula desconto de uma determinada compra. Para isso, ele soma
+	 * todos os valores dos jogos do carrinho. Logo ap�s, multimplica pelo desconto
+	 * referente � categoria do cliente.
 	 * 
 	 * @param cliente - cliente que est� realizando a compra.
 	 * @return valor me reais do desconto da compra.
 	 */
-	public double calculaDesconto(Cliente cliente) 
-	{
+	public double calculaDesconto(Cliente cliente) {
 		/*
 		 * MÉTODO DEVE APENAS FAZER O CALCULO DOS PRODUTOS DO CARRINHO E MULTIPLICAR
 		 * PELO DESCONTO QUE DEVE SER RETORNADO EM UM MÉTODO PELA CLASSE CLIENTE.
@@ -67,29 +66,25 @@ public class Loja {
 
 		return descontoProdutos;
 	}
-	
-	
+
 	/**
 	 *
 	 * @return Retorna o valor total do carrinho de compras, ainda sem desconto.
 	 */
-	public double calculaValorPagar()
-	{
+	public double calculaValorPagar() {
 		Jogo vetor[];
 		vetor = carrinhoCompras.getJogos();
 
 		double somaCarrinho;
 		somaCarrinho = 0;
-		
+
 		for (int i = 0; i < vetor.length; i++) {
 			somaCarrinho = somaCarrinho + vetor[i].getPreco();
 		}
-		
-	return somaCarrinho;
+
+		return somaCarrinho;
 	}
 
-	
-	
 	public void cadastraCliente(String nome, String cpf) {
 
 		if (!checaCliente(cpf)) {
@@ -131,38 +126,29 @@ public class Loja {
 		carrinhoCompras = new ListaJogos(100);
 	}
 
-	
-	public void fechaPedido(Cliente clienteAtual) 
-	{
+	public void fechaPedido(Cliente clienteAtual) {
 		double descontoNaCompraAtual = 0;
-		
-		try 
-		{
+
+		try {
 			clienteAtual.adicionarPedido(carrinhoCompras);
-			
+
 			descontoNaCompraAtual = this.calculaDesconto(clienteAtual);
-			
+
 			double valorPagar;
-			valorPagar =  this.calculaValorPagar() - descontoNaCompraAtual;
-			
-			
+			valorPagar = this.calculaValorPagar() - descontoNaCompraAtual;
+
 			System.out.printf("Valor a pagar: %.2f", valorPagar);
 			System.out.println();
 			System.out.printf("Seu desconto nessa compra foi de: %.2f", descontoNaCompraAtual);
 			System.out.println();
 			System.out.println("Obrigado!");
-			
-			
+
 			clienteAtual.atualizaFidelidade();
-			
-			
+
 			// Método do calculo da compra vem aqui miriam
-			
-			
+
 			this.iniciaPedido();
-		} 
-		catch (NullPointerException e0) 
-		{
+		} catch (NullPointerException e0) {
 			System.out.println("O pedido deve ser fechado em nome de um cliente já cadastrado");
 		}
 	}
@@ -231,32 +217,23 @@ public class Loja {
 
 	// Percebi que em nenhum momento estávamos adicionando os jogos ao carrinho aqui
 	// na loja...
-	public void adicionaAoCarrinho(String jogoEscolhido, String plataforma) throws Exception 
-	{
-		try 
-		{
+	public void adicionaAoCarrinho(String jogoEscolhido, String plataforma) throws Exception {
+		try {
 			carrinhoCompras.adicionarJogo(bibliotecaJogos.buscaJogo(jogoEscolhido, plataforma));
 
-		} 
-		catch (NullPointerException e0) 
-		{
+		} catch (NullPointerException e0) {
 			System.out.println("Jogo buscado para plataforma escolhida não foi encontrado");
-		} 
-		catch (ArrayIndexOutOfBoundsException e1) 
-		{
+		} catch (ArrayIndexOutOfBoundsException e1) {
 			System.out.println("Carrinho de compras cheio");
 		}
 
 	}
 
-	private boolean checaCliente(String cpf) 
-	{
+	private boolean checaCliente(String cpf) {
 		boolean resp = false;
-		
-		for (int i = 0; i < clientesCadastrados.size(); i++) 
-		{
-			if (clientesCadastrados.get(i).getCpf() == cpf) 
-			{
+
+		for (int i = 0; i < clientesCadastrados.size(); i++) {
+			if (clientesCadastrados.get(i).getCpf() == cpf) {
 				resp = true;
 				return resp;
 			}
