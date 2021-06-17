@@ -4,8 +4,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
 
 public class Loja {
 
@@ -75,15 +73,13 @@ public class Loja {
 			System.out.println("CPF já consta no banco de cadastro");
 	}
 
-	private void cadastraCliente() {
-		Scanner input = new Scanner(System.in);
+	private void cadastraCliente() throws IOException {
 		System.out.print("Digite o nome do cliente que deseja cadastrar: ");
-		String nome = input.nextLine();
+		String nome = teclado();
 		System.out.print("\nDigite o CPF do cliente que deseja cadastrar: ");
-		String cpf = input.nextLine();
+		String cpf = teclado();
 		System.out.println();
 		cadastraCliente(nome, cpf);
-		input.close();
 	}
 
 	public Cliente buscaCliente(String cpf) {
@@ -114,14 +110,12 @@ public class Loja {
 		}
 	}
 
-	private void fechaPedido() {
-		Scanner input = new Scanner(System.in);
+	private void fechaPedido() throws IOException {
 		Cliente clienteAtual;
 		System.out.print("Digite o CPF do cliente (Somente números): ");
-		String cpf = input.nextLine();
+		String cpf = teclado();
 		clienteAtual = buscaCliente(cpf);
 		fechaPedido(clienteAtual);
-		input.close();
 	}
 
 	public boolean buscaJogo(String nome, String plataforma) // Coloquei um parâmentro e um retorno.
@@ -131,15 +125,14 @@ public class Loja {
 
 	}
 
-	private void buscaJogo() {
-		Scanner input = new Scanner(System.in);
+	private void buscaJogo() throws IOException {
 		System.out.print("Digite o nome do jogo que deseja buscar: \n");
-		String plataforma = "", nome = input.nextLine();
+		String plataforma = "", nome = teclado();
 		System.out.println("\nSelecione a plataforma desejada: ");
 		System.out.println("[1] Computador");
 		System.out.println("[2] Playstation");
 		System.out.println("[3] XBox");
-		int opcao = input.nextInt();
+		int opcao = Integer.parseInt(teclado());
 		boolean found = false;
 		switch (opcao) {
 			case 1:
@@ -161,7 +154,7 @@ public class Loja {
 			System.out.println("Deseja adicionar ao carrinho?");
 			System.out.println("[1] Sim");
 			System.out.println("[2] Não");
-			opcao = input.nextInt();
+			opcao = Integer.parseInt(teclado());
 			switch (opcao) {
 				case 1:
 					try {
@@ -177,7 +170,6 @@ public class Loja {
 			}
 		} else
 			System.out.println("Infelizmente não temos esse jogo :(");
-		input.close();
 	}
 
 	// Percebi que em nenhum momento estávamos adicionando os jogos ao carrinho aqui
@@ -239,11 +231,11 @@ public class Loja {
 	}
 
 	public void menuInterativo() throws Exception {
-		
+
 		int opcao = 0;
 		imprimeMenu();
 		do {
-			opcao = Integer.parseInt(teclado()); 
+			opcao = Integer.parseInt(teclado());
 			switch (opcao) {
 				case 1:
 					cadastraCliente();
@@ -265,7 +257,7 @@ public class Loja {
 					break;
 			}
 
-		} while (opcao != 0);		
+		} while (opcao != 0);
 	}
 
 	private void imprimeMenu() {
@@ -280,12 +272,12 @@ public class Loja {
 	}
 
 	private String teclado() throws IOException {
-		String s;
+		String s = new String();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		s = br.readLine();
-		br.close();
 		return s;
 	}
+
 	public void mostraLojaCompleta() {
 		bibliotecaJogos.toString();
 	}
