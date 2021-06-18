@@ -10,8 +10,9 @@ public class Loja {
 	private ArrayList<Cliente> clientesCadastrados;
 	private ListaJogos bibliotecaJogos;
 	private ListaJogos carrinhoCompras;
+	private Data dataDeHoje;
 
-	Loja() {
+	Loja(Data hoje) {
 
 		clientesCadastrados = new ArrayList<Cliente>();
 
@@ -26,6 +27,8 @@ public class Loja {
 		} catch (Exception e2) {
 			System.out.println("Ocorreu um erro inesperado");
 		}
+
+		dataDeHoje = hoje;
 
 		esvaziaCarrinho();
 	}
@@ -82,8 +85,7 @@ public class Loja {
 
 	}
 
-	public void esvaziaCarrinho()
-	{
+	public void esvaziaCarrinho() {
 		carrinhoCompras = new ListaJogos(100);
 	}
 
@@ -124,8 +126,7 @@ public class Loja {
 		}
 	}
 
-	public boolean buscaJogo(String nome, String plataforma)
-	{
+	public boolean buscaJogo(String nome, String plataforma) {
 
 		return bibliotecaJogos.existeJogo(nome, plataforma);
 
@@ -180,13 +181,30 @@ public class Loja {
 
 	public void adicionaAoCarrinho(String jogoEscolhido, String plataforma) throws Exception {
 		try {
-			carrinhoCompras.adicionarJogo(bibliotecaJogos.buscaJogo(jogoEscolhido, plataforma));
+			Jogo aux = cloneJogoComDesconto(bibliotecaJogos.buscaJogo(jogoEscolhido, plataforma));
+
+			carrinhoCompras.adicionarJogo(aux);
 
 		} catch (NullPointerException e0) {
 			System.out.println("Jogo buscado para plataforma escolhida não foi encontrado");
 		} catch (ArrayIndexOutOfBoundsException e1) {
 			System.out.println("Carrinho de compras cheio");
 		}
+
+	}
+
+	private Jogo cloneJogoComDesconto(Jogo j) {
+		Jogo copia;
+		if (j.getPlataforma().equals("Computador")) {
+			copia = new Computador(j.getNome(), j.getPrecoBase(), j.getDataDeLanc());
+		} else if (j.getPlataforma().equals("Playstation")) {
+			copia = new Playstation(j.getNome(), j.getPrecoBase(), j.getDataDeLanc());
+		} else {
+			copia = new Xbox(j.getNome(), j.getPrecoBase(), j.getDataDeLanc());
+		}
+
+		copia.setPreco(copia.getPreco() * descontData(copia));
+		return copia;
 
 	}
 
@@ -235,8 +253,31 @@ public class Loja {
 
 	}
 
-	public void menuInterativo() {
+	private int comparaData(Jogo j) {
+		return dataDeHoje.diferencaDias(j.getDataDeLanc());
+	}
 
+	private double descontData(Jogo j) {
+
+		int diferencaDias = comparaData(j);
+
+		if (diferencaDias < 365) {
+			return 1;
+		}
+
+		if (diferencaDias > 365 && diferencaDias < 730) {
+			return 0.85;
+		}
+
+		else {
+			return 0.75;
+		}
+	}
+
+	public void menuInterativo() {
+		System.out.println("\n@@@@@@@@@@ PRAISEGABEN GAMESTORE @@@@@@@@@@\n");
+		System.out.println(
+				"⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠛⠉⠉⠄⠄⠄⠉⠉⠛⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⠄⢀⣠⣶⣶⣶⣶⣤⡀⠄⠄⠹⣿⣿⣿⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⣿⣿⣿⣿⡏⠄⠄⣾⣿⢿⣿⣿⡿⢿⣿⡆⠄⠄⢻⣿⣿⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⣿⣿⣿⡿⠃⠄⠄⢿⣇⣸⣿⣿⣇⣸⡿⠃⠄⠄⠸⣿⣿⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⣿⡿⠋⠄⠄⠄⠄⠄⠉⠛⠛⠛⠛⠉⠄⠄⠄⠄⠄⠄⠙⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⡟⠁⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠈⢿⣿⣿⣿\n⣿⣿⣿⡟⠄⠄⠄⠠⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠈⢿⣿⣿\n⣿⣿⡟⠄⠄⠄⢠⣆⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⣧⠄⠄⠄⠈⢿⣿\n⣿⣿⡇⠄⠄⠄⣾⣿⡀⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢰⣿⣧⠄⠄⠄⠘⣿\n⣿⣿⣇⠄⣰⣶⣿⣿⣿⣦⣀⡀⠄⠄⠄⠄⠄⠄⠄⢀⣠⣴⣿⣿⣿⣶⣆⠄⢀⣿\n⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⠄⠄⢸⣿⠇⠄⠄⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣤⣴⣾⣿⣶⣤⣤⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\n⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\n");
 		int opcao = 0;
 		try {
 			do {
@@ -262,6 +303,10 @@ public class Loja {
 					case 5:
 						fechaPedido();
 						break;
+					case 6:
+						bibliotecaJogos.ordenaPorPlatf();
+						mostraLojaCompleta();
+						break;
 					default:
 						System.out.println("Opção deve ser um número de 0-5");
 						break;
@@ -279,10 +324,11 @@ public class Loja {
 		System.out.println("\n########## MENU DA LOJA ##########\n");
 		System.out.println("Selecione a opção desejada:");
 		System.out.println("[1] Cadastrar Cliente");
-		System.out.println("[2] Abrir Pedido");
+		System.out.println("[2] Esvaziar Carrinho");
 		System.out.println("[3] Buscar Jogo na biblioteca");
 		System.out.println("[4] Mostrar carrinho");
 		System.out.println("[5] Fechar Pedido");
+		System.out.println("[6] Mostrar todos os jogos");
 		System.out.println("[0] Sair");
 	}
 
