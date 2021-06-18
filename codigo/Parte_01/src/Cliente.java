@@ -73,7 +73,7 @@ public class Cliente {
 	}
 
 	/**
-	 * Esse m�todo depende da chamada, pr�via, do m�todo "atualizaFidelidade".
+	 * Esse método depende da chamada, prévia, do método "atualizaFidelidade".
 	 * 
 	 * @return retorna o percentual do desconto que o cliente tem direito de acordo
 	 *         com sua categoria.
@@ -84,7 +84,7 @@ public class Cliente {
 
 	/**
 	 * Esse m�todo atualiza a classe de fidelidade com base no hist�rico de compras.
-	 * Justamente por ser t�o relevante, ele � chamado inclusive no construtor dessa
+	 * Justamente por ser tão relevante, ele � chamado inclusive no construtor dessa
 	 * classe.
 	 *
 	 */

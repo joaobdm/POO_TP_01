@@ -63,7 +63,7 @@ public class Loja {
 			System.out.println("CPF já consta no banco de cadastro");
 	}
 
-	private void cadastraCliente() throws IOException {
+	public void cadastraCliente() throws IOException {
 		System.out.print("Digite o nome do cliente que deseja cadastrar: ");
 		String nome = teclado();
 		System.out.print("\nDigite o CPF do cliente que deseja cadastrar: ");
@@ -114,7 +114,7 @@ public class Loja {
 		}
 	}
 
-	private void fechaPedido() throws IOException {
+	public void fechaPedido() throws IOException {
 		if (carrinhoCompras.precoTotal() == 0) {
 			System.out.println("Pedido não pode ser fechado com um carrinho vazio");
 		} else {
@@ -132,7 +132,7 @@ public class Loja {
 
 	}
 
-	private void buscaJogo() throws IOException {
+	public void buscaJogo() throws IOException {
 		System.out.print("Digite o nome do jogo que deseja buscar: \n");
 		String plataforma = "", nome = teclado();
 		System.out.println("\nSelecione a plataforma desejada: ");
