@@ -8,3 +8,8 @@
 * Matheus Prado
 * Míriam Junqueira
 * Thamires Muraro
+
+## Alterações realizadas pós apresentação
+Diagrama UML adequado para refletir a necessidade de criação de alguns métodos dentro das classes do projeto.
+
+

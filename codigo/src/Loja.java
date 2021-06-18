@@ -222,7 +222,7 @@ public class Loja {
 
 	private void carregaBiblioteca() throws Exception {
 
-		BufferedReader reader = new BufferedReader(new FileReader("codigo/Parte_01/gamesLibrary.csv"));
+		BufferedReader reader = new BufferedReader(new FileReader("codigo/gamesLibrary.csv"));
 		String aux;
 		String[] divided, dateString;
 		Jogo jogo;
